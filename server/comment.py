@@ -33,7 +33,7 @@ def add_comment(request):
 
         response = Response(200, data_type='application/json', data = json.dumps(comm_id[0]['MAX(comment_id)']))
     else:
-        response = Response(403)
+        response = Response(401)
 
     return response.get_response()
 
@@ -47,7 +47,7 @@ def delete_comment(request):
         response = Response(200)
 
     else:
-        response = Response(403)
+        response = Response(401)
 
     return response.get_response()
 

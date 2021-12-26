@@ -29,6 +29,6 @@ def send_follow(request):
 
         response = Response(200)
     else:
-        response = Response(403)
+        response = Response(401)
 
     return response.get_response()

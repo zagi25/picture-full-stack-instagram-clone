@@ -66,23 +66,16 @@ def live_data(request):
                     result['notifications'] = notifications
 
                 if convo_id:
-                    if convo_id[0]['status'] != 0:
+                    sql_msg = f"SELECT * FROM messages WHERE convo_id='{convo_id[0]['convo_id']}' AND reciver='{user['user_id']}' AND delivered=0"
+                    messages = sql_execute(sql_msg, 'get')
+                    if messages:
                         result['messages'] = list()
-                        now_msg = now
-                        count=0
-                        while True:
-                            time.sleep(0.5)
-                            sql_msg = f"SELECT * FROM messages WHERE convo_id='{convo_id[0]['convo_id']}' AND reciver='{user['user_id']}' AND created_at>{now_msg}"
-                            messages = sql_execute(sql_msg, 'get')
-                            if messages:
-                                now_msg = messages[-1]['created_at']
-                                for m in messages:
-                                    result['messages'].append(m)
-                            else:
-                                break
+                        for m in messages:
+                            sql_u = f"UPDATE messages SET delivered = 1 WHERE msg_id={m['msg_id']}"
+                            sql_execute(sql_u, 'change')
+                            result['messages'].append(m)
                     else:
                         result['seen_message'] = [convo_id[0]['convo_id'], now]
-
 
                 if bool(result):
                     break

@@ -241,11 +241,10 @@ const Post = ({ image, index, array, deletePost, setMoreImg }) => {
     }else {
       imgRef1.current.style['object-fit'] = 'cover';
     }
-
     setLoadOwner(false);
   }
 
-  //Setting observer on second to last fetched image for lazy loading
+  //Setting observer
   //When observer enters the screen fetching for more images is triggered
   useEffect(() => {
     let observer = new IntersectionObserver(([entry]) => {setMoreImg(entry.isIntersecting);}, {rootMargin: '0px', threshold: 0.5,});

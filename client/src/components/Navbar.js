@@ -42,7 +42,7 @@ const Navbar = () => {
     };
   },[]);
 
-  //Showing navbar menu on screen
+  //Showing navbar menu on screen on mobile verision
   useEffect(() => {
     if(!toggle){
       navRef.current.style.transform = 'translateX(10rem)';
@@ -200,7 +200,7 @@ const Navbar = () => {
       setClickedN(false);
       navigate(`/images/${path[path.length - 1]}`);
     }
-    hoverNot(not);//Update notifications
+    hoverNot(not);//Update notification
   }
 
   //Check if there is new notifications
@@ -231,7 +231,6 @@ const Navbar = () => {
   const convert_time = (created_at) => {
     moment.updateLocale('en', {
         relativeTime : {
-            future: "in %s",
             past:   "%s ago",
             s  : '%ds',
             ss : '%ds',

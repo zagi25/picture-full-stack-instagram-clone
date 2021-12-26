@@ -16,14 +16,14 @@ def create_convo(request):
 
         if "'" in data['content']:
             a = data['content'].replace("'", "''")
-            data['content'] = a 
+            data['content'] = a
         sql_msg = f"INSERT INTO messages(sender, reciver, convo_id, content, created_at) VALUES('{data['sender']}', '{data['reciver']}', '{convo_id[0]['convo_id']}', '{data['content']}', {now})"
         sql_execute(sql_msg, 'change')
 
         response = Response(200, data_type='application/json', data = json.dumps(convo_id[0]))
 
     else:
-        response = Response(403)
+        response = Response(401)
 
     return response.get_response()
 
@@ -37,6 +37,8 @@ def get_convos(request):
         for r in res:
             sql_msg = f"SELECT * FROM messages WHERE convo_id='{r['convo_id']}' ORDER BY created_at DESC LIMIT 20"
             messages = sql_execute(sql_msg, 'get')
+            sql_msgU = f"UPDATE messages SET delivered=1 WHERE convo_id='{r['convo_id']}'"
+            sql_execute(sql_msgU, 'change')
             messages = messages[::-1]
             if r['user1'] is not user['user_id']:
                 second_user = r['user1']
@@ -51,7 +53,7 @@ def get_convos(request):
         response = Response(200, data_type='application/json', data = json.dumps(res))
 
     else:
-        response = Response(403)
+        response = Response(401)
 
     return response.get_response()
 
@@ -66,7 +68,7 @@ def update_convos(request):
         response = Response(200)
 
     else:
-        response = Response(403)
+        response = Response(401)
 
     return response.get_response()
 
