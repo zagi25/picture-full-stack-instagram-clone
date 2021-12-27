@@ -4,7 +4,7 @@ Front-end is written using React.<br>
 Back-end is written in python.<br>
 All data is stored in SQLite.<br>
 
-Site has six users:<br>
+Users:<br>
 1.username: car_dusan<br>
   password: srbija55<br>
 2.username: mike_t<br>
@@ -18,4 +18,4 @@ Site has six users:<br>
 6.username: dom<br>
   password:family1234<br>
   
-You can access site on https://picture-client-side.herokuapp.com, please be patient when you're first accessing the site because it takes long time to load beacuse of heroku.
+You can access site on https://picture-client-side.herokuapp.com, please be patient when you're first accessing the site because it takes long time to load.
