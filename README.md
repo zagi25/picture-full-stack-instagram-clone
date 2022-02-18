@@ -18,4 +18,4 @@ Users:<br>
 6.username: dom<br>
   password:family1234<br>
   
-You can access site on https://picture-client-side.herokuapp.com, please be patient when you're first accessing the site because it takes long time to load.
+You can access site on https://picture-ratko.netlify.app.
